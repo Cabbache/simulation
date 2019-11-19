@@ -44,5 +44,6 @@ class Ball:
 	def merge(self, ball):
 		mass = ball.area()+self.area()
 		newSize = int(math.sqrt(mass/math.pi))
-		#newX = ball.area()+
-		return Ball(self.avg(self.x,ball.x), self.avg(self.y,ball.y), size=newSize)
+		newX = self.x + ((ball.x-self.x) * ball.area()/mass)
+		newY = self.y + ((ball.y-self.y) * ball.area()/mass)
+		return Ball(newX, newY, size=newSize)
