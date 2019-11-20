@@ -48,4 +48,7 @@ class Ball:
 		newY = self.y + ((ball.y-self.y) * ball.area()/mass)
 		newVx = (ball.area()*ball.vx + self.area()*self.vx) / mass
 		newVy = (ball.area()*ball.vy + self.area()*self.vy) / mass
-		return Ball(newX, newY, size=newSize, vx=newVx, vy=newVy)
+		newCol = []
+		for x in xrange(3):
+			newCol.append(self.color[x] + ((ball.color[x]-self.color[x]) * ball.area()/mass))
+		return Ball(newX, newY, size=newSize, vx=newVx, vy=newVy, color=newCol)
