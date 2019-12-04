@@ -3,7 +3,7 @@ import math
 from random import randint
 from Ball import Ball
 
-G = 0.1
+G = 0.01
 pygame.init()
 
 white = (255,255,255)
@@ -29,6 +29,7 @@ def solarSystem():
 	balls.append(Ball(800,400,yellow,vy=-math.sqrt(const/200.0),size=15))
 	balls.append(Ball(400,400,yellow,vy=math.sqrt(const/200.0),size=15))
 
+#the physics of this is not accurate, needs correction
 def boom(center, power):
 	for ball in balls:
 		distance = pythagoras(center[0] - ball.x, center[1] - ball.y)
@@ -47,7 +48,7 @@ def random(times, bang):
 		#print(str(xc)+","+str(yc)+","+str(si)+","+str(vx)+","+str(vy))
 		balls.append(Ball(xc, yc, (randint(10,255), randint(10,255), randint(10,255)), si))
 	if bang:
-		boom([w/2,h/2],200)
+		boom([w/2,h/2], 200)
 
 def load(filename):
 	lines = []
@@ -58,11 +59,11 @@ def load(filename):
 		balls.append(Ball(float(sp[0]), float(sp[1]), white, float(sp[2]), float(sp[3]), float(sp[4])))
 
 #solarSystem()
-#random(200)
-random(90, True)
+random(90, False)
+#random(90, True)
 #load("random.txt")
 
-imagenum = 1
+#imagenum = 1
 while True:
 	pygame.display.update()
 	gameDisplay.fill(black)
@@ -87,5 +88,5 @@ while True:
 				break
 		#ball.attract(Ball(point[0], point[1], size=10), G)
 		pygame.draw.circle(gameDisplay, ball.color, ball.getCoords(), int(ball.size))
-	pygame.image.save(gameDisplay, "simulation/"+str(imagenum)+".jpeg")
-	imagenum += 1
+	#pygame.image.save(gameDisplay, "simulation/"+str(imagenum)+".jpeg")
+	#imagenum += 1
